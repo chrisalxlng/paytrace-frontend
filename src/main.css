@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/inter-variable.ttf) format("truetype");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@theme {
+  --color-*: initial;
+
+  --color-background: #111315;
+  --color-surface: #1A1C1E;
+  --color-surface-darker: #212426;
+  --color-surface-darkest: #16181A;
+  --color-overlay: #282A31;
+  --color-primary: #0C6AEA;
+  --color-primary-darker: #0A58C2;
+  --color-primary-darkest: #08479E;
+  --color-on-primary: #EDFEFF;
+  --color-attention: #FBFCFC;
+  --color-subtle: #72797D;
+  --color-subtle-darker: #3F4448;
+  --color-subtle-darkest: #313538;
+  --color-green: #33B05F;
+  --color-blue: #4B90DA;
+  --color-blue-dark: #1E2B38;
+  --color-blue-darker: #2A3F55;
+  --color-blue-darkest: #375370;
+  --color-yellow: #DAA14B;
+  --color-yellow-dark: #48371E;
+  --color-yellow-darker: #5D4626;
+  --color-yellow-darkest: #72542E;
+  --color-red: #ED5018;
+  --color-red-dark: #4D1F16;
+  --color-red-darker: #662A1F;
+  --color-red-darkest: #803427;
+
+  --font-*: initial;
+  --font-base: "Inter Variable", sans-serif;
+}
+
+html {
+  background: var(--color-background);
+}
+
+body {
+  position: relative;
+}
+
+.root {
+  isolation: isolate;
+}
+
+.recharts-wrapper *:focus:not(:focus-visible) {
+  outline: none !important;
+}
