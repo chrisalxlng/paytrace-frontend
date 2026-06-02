@@ -4,9 +4,11 @@ import { useState } from "react";
 import { m } from "../paraglide/messages";
 import { useAuthStore } from "../stores/AuthStore";
 import { AvatarButton } from "./AvatarButton";
+import { Badge } from "./Badge";
 import { BottomDrawer } from "./BottomDrawer";
 import { List } from "./List";
 import { ListItem } from "./ListItem";
+import { ListSeparator } from "./ListSeparator";
 import { Text } from "./Text";
 
 type HeaderProps = {
@@ -16,8 +18,9 @@ type HeaderProps = {
 
 export const Header = ({ title, className }: HeaderProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [innerDrawerOpen, setInnerDrawerOpen] = useState(false);
   const { logout, userInfo } = useAuthStore();
-  const { firstName, lastName, emailAddress } = userInfo ?? {};
+  const { firstName, lastName, emailAddress, isDemo } = userInfo ?? {};
 
   const name = `${firstName} ${lastName}`;
 
@@ -53,9 +56,12 @@ export const Header = ({ title, className }: HeaderProps) => {
         open={drawerOpen}
         onOpenChange={setDrawerOpen}
         titleSlot={
-          <Text variant="title" className="truncate">
-            {name}
-          </Text>
+          <div className="flex gap-3 items-center">
+            <Text variant="title" className="truncate">
+              {name}
+            </Text>
+            {isDemo && <Badge label={m.demo()} />}
+          </div>
         }
         descriptionSlot={
           <Text variant="caption" color="subtle" className="truncate">
@@ -64,6 +70,41 @@ export const Header = ({ title, className }: HeaderProps) => {
         }
       >
         <List>
+          {isDemo && (
+            <BottomDrawer
+              nativeButton={false}
+              triggerSlot={
+                <ListItem
+                  titleSlot={<Text>{m.about_demo_mode()}</Text>}
+                  interactive
+                />
+              }
+              open={innerDrawerOpen}
+              onOpenChange={setInnerDrawerOpen}
+              titleSlot={
+                <div className="flex gap-3 items-center">
+                  <Text variant="title" className="truncate">
+                    {m.about_demo_mode()}
+                  </Text>
+                </div>
+              }
+              descriptionSlot={
+                <Text variant="caption" color="subtle" className="truncate">
+                  {m.demo_account_information()}
+                </Text>
+              }
+            >
+              <List>
+                <ListItem
+                  titleSlot={<Text>{m.demo_account_information_public()}</Text>}
+                />
+                <ListSeparator />
+                <ListItem
+                  titleSlot={<Text>{m.demo_account_information_reset()}</Text>}
+                />
+              </List>
+            </BottomDrawer>
+          )}
           <Link to="/payrolls">
             <ListItem
               onClick={() => setDrawerOpen(false)}

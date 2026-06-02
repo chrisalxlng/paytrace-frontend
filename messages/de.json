@@ -93,5 +93,10 @@
   "navigate_to_home": "Zur Startseite navigieren",
   "retry": "Erneut versuchen",
   "page_title": "{page} • Paytrace",
-  "paytrace": "Paytrace"
+  "paytrace": "Paytrace",
+  "about_demo_mode": "Über Demo-Modus",
+  "demo_account_information": "Hinweise zum Demo-Konto",
+  "demo_account_information_public": "Dieses Konto ist öffentlich zugänglich. Alle hochgeladenen Inhalte können von anderen Nutzern eingesehen werden.",
+  "demo_account_information_reset": "Daten werden automatisch alle 24 Stunden zurückgesetzt.",
+  "demo": "Demo"
 }

@@ -93,5 +93,10 @@
   "navigate_to_home": "Navigate to home",
   "retry": "Retry",
   "page_title": "{page} • Paytrace",
-  "paytrace": "Paytrace"
+  "paytrace": "Paytrace",
+  "about_demo_mode": "About demo mode",
+  "demo_account_information": "Demo account information",
+  "demo_account_information_public": "This account is publicly accessible. All uploaded content can be viewed by other users.",
+  "demo_account_information_reset": "Data is automatically reset every 24 hours.",
+  "demo": "Demo"
 }

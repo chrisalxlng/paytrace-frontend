@@ -5,7 +5,8 @@ import type { PropsWithChildren, ReactElement } from "react";
 import { IconButton } from "./IconButton";
 
 type BottomDrawerProps = PropsWithChildren &
-  Drawer.Root.Props & {
+  Drawer.Root.Props &
+  Pick<Drawer.Trigger.Props, "nativeButton"> & {
     triggerSlot: ReactElement;
     titleSlot?: ReactElement;
     descriptionSlot?: ReactElement;
@@ -16,10 +17,15 @@ export const BottomDrawer = ({
   triggerSlot,
   titleSlot,
   descriptionSlot,
+  nativeButton,
   ...props
 }: BottomDrawerProps) => (
   <Drawer.Root {...props}>
-    <Drawer.Trigger className="cursor-pointer" render={triggerSlot} />
+    <Drawer.Trigger
+      className="cursor-pointer"
+      render={triggerSlot}
+      nativeButton={nativeButton}
+    />
     <Drawer.Portal>
       <Drawer.Backdrop
         className={classNames(
@@ -46,22 +52,37 @@ export const BottomDrawer = ({
             <div className="flex min-h-full items-end justify-center pt-8 md:py-16 md:px-16 min-w-0">
               <Drawer.Popup
                 className={classNames(
-                  "group w-full max-w-lg outline-none transition-transform duration800",
-                  "ease-[cubic-bezier(0.45,1.005,0,1.005)] transform-[translateY(var(--drawer-swipe-movement-y))]",
+                  "[--bleed:2rem] [--peek:1rem]",
+                  "[--stack-progress:clamp(0,var(--drawer-swipe-progress),1)] [--stack-step:0.04]",
+                  "[--stack-peek-offset:max(0px,calc((var(--nested-drawers)-var(--stack-progress))*var(--peek)))]",
+                  "[--scale-base:calc(max(0,1-(var(--nested-drawers)*var(--stack-step))))]",
+                  "[--scale:clamp(0,calc(var(--scale-base)+(var(--stack-step)*var(--stack-progress))),1)]",
+                  "[--shrink:calc(1-var(--scale))]",
+                  "[--height:max(0px,calc(var(--drawer-frontmost-height,var(--drawer-height))-var(--bleed)))]",
+
+                  "group/popup w-full max-w-lg outline-none",
+
+                  "origin-[50%_100%] transform-[translateY(calc(var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--shrink)*var(--height))))_scale(var(--scale))]",
+                  "transition-[transform,height,opacity,shadow] duration-600 ease-[cubic-bezier(0.45,1.005,0,1.005)]",
+
                   "data-swiping:select-none data-ending-style:transform-[translateY(calc(max(100dvh,100%)+2px))]",
                   "data-ending-style:duration-350 data-ending-style:ease-[cubic-bezier(0.375,0.015,0.545,0.455)]",
+
+                  "data-nested-drawer-open:h-[calc(var(--height)+var(--bleed))] data-nested-drawer-open:overflow-hidden",
+                  "after:pointer-events-none after:absolute after:inset-0 after:rounded-t-2xl md:after:rounded-xl after:bg-transparent after:content-[''] after:transition-[background-color] after:duration-400",
+                  "data-nested-drawer-open:after:bg-black/10",
                 )}
               >
                 <div
                   className={classNames(
                     "relative flex flex-col rounded-t-2xl bg-overlay/80 backdrop-blur-3xl px-6 pt-4 pb-6",
-                    "shadow-[0_0_0_1px_oklch(29%_0.75%_264deg/80%)] transition-shadow",
+                    "shadow-[0_0_0_1px_oklch(29%_0.75%_264deg/80%)] transition-[shadow,opacity,transform]",
                     "duration-350 ease-[cubic-bezier(0.375,0.015,0.545,0.455)]",
                     "group-data-ending-style:shadow-[0_0_0_1px_rgb(0_0_0/0%)] md:rounded-xl",
                     "border-2 border-subtle",
                   )}
                 >
-                  <div className="mb-3 grid grid-cols-[1fr_auto_1fr] items-center">
+                  <div className="mb-3 grid grid-cols-[1fr_auto_1fr] items-center transition-opacity duration-300 group-data-nested-drawer-open/popup:opacity-0 group-data-nested-drawer-swiping/popup:opacity-100">
                     <div aria-hidden className="h-9 w-9" />
                     <div className="h-0.75 w-12 justify-self-center rounded-full bg-subtle" />
                     <div className="justify-self-end ">
@@ -76,7 +97,7 @@ export const BottomDrawer = ({
                     </div>
                   </div>
 
-                  <Drawer.Content className="w-full flex flex-col gap-6">
+                  <Drawer.Content className="w-full flex flex-col gap-6 transition-opacity duration-300 group-data-nested-drawer-open/popup:opacity-0 group-data-nested-drawer-swiping/popup:opacity-100">
                     <div className="flex flex-col gap-1">
                       <Drawer.Title render={titleSlot} />
                       <Drawer.Description render={descriptionSlot} />

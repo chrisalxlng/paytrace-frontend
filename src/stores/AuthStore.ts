@@ -5,6 +5,7 @@ type UserInfo = {
   firstName: string;
   lastName: string;
   emailAddress: string;
+  isDemo: boolean;
 };
 
 type AuthState = {
@@ -36,6 +37,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           emailAddress: userInfoResponse?.email ?? "",
           firstName: userInfoResponse?.given_name ?? "",
           lastName: userInfoResponse?.family_name ?? "",
+          isDemo: userInfoResponse?.is_demo ?? false,
         };
       }
 
