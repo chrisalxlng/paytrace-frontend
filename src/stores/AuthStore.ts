@@ -1,3 +1,4 @@
+import type { LinkProps } from "@tanstack/react-router";
 import { create } from "zustand";
 import { keycloak } from "../auth";
 
@@ -70,7 +71,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   logout: () => {
-    keycloak.logout();
+    const rootPath: LinkProps["to"] = "/";
+    const redirectUri = `${window.location.origin}${rootPath}`;
+
+    keycloak.logout({
+      redirectUri,
+    });
     set({ authenticated: false, token: undefined });
   },
 }));

@@ -98,5 +98,9 @@
   "demo_account_information": "Hinweise zum Demo-Konto",
   "demo_account_information_public": "Dieses Konto ist öffentlich zugänglich. Alle hochgeladenen Inhalte können von anderen Nutzern eingesehen werden.",
   "demo_account_information_reset": "Daten werden automatisch alle 24 Stunden zurückgesetzt.",
-  "demo": "Demo"
+  "demo": "Demo",
+  "start_demo": "Demo ausprobieren",
+  "sign_in": "Anmelden",
+  "copy_title": "Gehaltsentwicklung auf einen Blick.",
+  "copy_subtitle": "Paytrace macht deine Gehaltsentwicklung greifbar. Verwandle deine Abrechnungen per Datei-Import in visuelle Berichte und verfolge Meilensteine, Boni und Trends deiner beruflichen Laufbahn."
 }

@@ -15,7 +15,13 @@ export type RouterContext = {
 export const queryClient = new QueryClient();
 export const toastManager = Toast.createToastManager<ToastsData>();
 
-let router: ReturnType<typeof createRouter>;
+const router = createRouter({
+  routeTree,
+  context: {
+    // biome-ignore lint/style/noNonNullAssertion: Gets initialized later on
+    queryClient: undefined!,
+  },
+});
 
 declare module "@tanstack/react-router" {
   interface Register {
@@ -32,8 +38,7 @@ declare module "@tanstack/react-router" {
 const initializeApp = async () => {
   await useAuthStore.getState().init();
 
-  router = createRouter({
-    routeTree,
+  router.update({
     context: {
       queryClient,
     },

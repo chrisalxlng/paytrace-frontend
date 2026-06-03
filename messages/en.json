@@ -98,5 +98,9 @@
   "demo_account_information": "Demo account information",
   "demo_account_information_public": "This account is publicly accessible. All uploaded content can be viewed by other users.",
   "demo_account_information_reset": "Data is automatically reset every 24 hours.",
-  "demo": "Demo"
+  "demo": "Demo",
+  "start_demo": "Start demo",
+  "sign_in": "Sign in",
+  "copy_title": "Your Salary Growth at a Glance.",
+  "copy_subtitle": "Paytrace brings your salary progression to life. Turn your payrolls into visual reports with a simple file import and track milestones, bonuses, and trends throughout your career."
 }
