@@ -27,19 +27,25 @@ export const currencyFormatter = {
     fractionDigitsCurrencyFormatter.format(number),
 };
 
-export const signPercentageFormatter = new Intl.NumberFormat("de-DE", {
-  style: "percent",
-  minimumFractionDigits: 1,
-  maximumFractionDigits: 1,
-  signDisplay: "exceptZero",
-});
+export const signPercentageFormatter = new Intl.NumberFormat(
+  window.navigator.language,
+  {
+    style: "percent",
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+    signDisplay: "exceptZero",
+  },
+);
 
-export const noSignPercentageFormatter = new Intl.NumberFormat("de-DE", {
-  style: "percent",
-  minimumFractionDigits: 1,
-  maximumFractionDigits: 1,
-  signDisplay: "never",
-});
+export const noSignPercentageFormatter = new Intl.NumberFormat(
+  window.navigator.language,
+  {
+    style: "percent",
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+    signDisplay: "never",
+  },
+);
 
 export const percentageFormatter = {
   format: signPercentageFormatter.format,
