@@ -60,6 +60,7 @@
   "gross_income": "Bruttoeinkommen",
   "taxes": "Steuern",
   "social_deductions": "Sozialabgaben",
+  "previous_year": "Vorjahr",
   "gross_salary_vs_previous_year": "Bruttogehalt vs. Vorjahr",
   "cumulative_gross_income": "Kumuliertes Bruttoeinkommen",
   "cumulative_pension_insurance": "Kumulierte Rentenversicherung",

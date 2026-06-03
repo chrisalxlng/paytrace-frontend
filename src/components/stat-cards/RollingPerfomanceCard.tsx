@@ -97,7 +97,7 @@ export const RollingPerfomanceCard = ({
           strokeWidth={2}
           strokeDasharray="3 3"
           label={{
-            value: "Vorjahr",
+            value: m.previous_year(),
             position: "top",
             fill: "var(--color-subtle)",
             className: getTextClasses({ variant: "caption" }),
