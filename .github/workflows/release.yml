@@ -54,7 +54,7 @@ jobs:
             --tag $IMAGE:$TAG \
             --tag $IMAGE:latest \
             --push \
-            --cache-from=type=registry,ref=$IMAGE_LOWER:latest \
+            --cache-from=type=registry,ref=$IMAGE:latest \
             --cache-to=type=inline .
 
       - name: Create GitHub Release
